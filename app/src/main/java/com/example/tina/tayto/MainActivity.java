@@ -1,5 +1,7 @@
 package com.example.tina.tayto;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
@@ -217,6 +220,16 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+
         return true;
     }
 
@@ -231,9 +244,24 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         if (id == R.id.action_add) {
             addDialogFragment.show(getSupportFragmentManager(), "Add a Picture");
             return true;
+        } else if (id == R.id.search) {
+            onSearchRequested();
+            Bundle appData = getIntent().getBundleExtra(SearchManager.APP_DATA);
+            if (appData != null) {
+                String hello = appData.getString("hello");
+            }
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSearchRequested() {
+        Bundle appData = new Bundle();
+        appData.putString("hello", "world");
+        startSearch(null, false, appData, false);
+        return true;
     }
 
     @Override
