@@ -20,6 +20,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import org.apache.http.NameValuePair;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         MySubscriptionsFragment.OnFragmentInteractionListener, MyProfileFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener{
 
+    private static final String TAG = "MainActivity";
     DrawerLayout drawerLayout;
     View content;
     String title;
@@ -48,16 +51,29 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     SettingsFragment settingsFragment;
     Fragment currentFragment;
 
+    EditText username, password;
+
     boolean loginSuccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.sign_in_screen);
+
+        username = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
+
+        Button button = (Button) findViewById(R.id.btnSignIn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SignIn(username.getText().toString(), password.getText().toString());
+            }
+        });
 
         setUpFragments();
-        createNavigationDrawer();
+
     }
 
     private void setUpFragments() {
@@ -252,16 +268,23 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
             JSONObject json = jParser.makeHttpRequest(url, "POST", params);
 
-            Log.d("JSON: ", json.toString());
-
             try {
-                json.toString();
+                Log.d("JSON: ", json.toString());
                 loginSuccess = true;
             } catch (NullPointerException npe) {
                 loginSuccess = false;
             }
 
             return null;
+        }
+
+        protected void onPostExecute(String file_url) {
+            if (loginSuccess) {
+                setContentView(R.layout.activity_main);
+                createNavigationDrawer();
+            } else {
+                Log.d(TAG, "unsuccessful login!");
+            }
         }
     }
 
