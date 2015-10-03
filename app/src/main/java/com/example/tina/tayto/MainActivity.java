@@ -26,6 +26,7 @@ import android.widget.ImageView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     EditText username, password;
 
-    boolean loginSuccess;
+    int loginSuccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +69,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new SignIn(username.getText().toString(), password.getText().toString());
+                new SignIn(username.getText().toString(), password.getText().toString()).execute();
             }
         });
 
-        setUpFragments();
+
 
     }
 
@@ -237,14 +238,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     class SignIn extends AsyncTask<String, String, String> {
 
-        private static final String url = "http://awtter.website/Tayto/signin.php";
+        private static final String url = "http://awtter.website/tayto_api/login.php";
         private static final String TAG_USERNAME = "username";
         private static final String TAG_PASSWORD = "password";
 
         String username, password;
 
-
         JSONParser jParser;
+
         public SignIn(String username, String password) {
             this.username = username;
             this.password = password;
@@ -269,19 +270,22 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
             JSONObject json = jParser.makeHttpRequest(url, "POST", params);
 
             try {
-                Log.d("JSON: ", json.toString());
-                loginSuccess = true;
-            } catch (NullPointerException npe) {
-                loginSuccess = false;
+                loginSuccess = json.getInt("success");
+                loginSuccess = 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                loginSuccess = 0;
             }
 
             return null;
         }
 
         protected void onPostExecute(String file_url) {
-            if (loginSuccess) {
+            if (loginSuccess == 1) {
                 setContentView(R.layout.activity_main);
+                setUpFragments();
                 createNavigationDrawer();
+                Log.d(TAG, "successful login");
             } else {
                 Log.d(TAG, "unsuccessful login!");
             }
