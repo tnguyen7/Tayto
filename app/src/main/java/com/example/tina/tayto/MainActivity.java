@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     MyProfileFragment myProfileFragment;
     SettingsFragment settingsFragment;
     Fragment currentFragment;
+    AddDialogFragment addDialogFragment;
 
     TextView username, password, incorrectLogin;
 
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
             mySubFragment = new MySubscriptionsFragment();
             myProfileFragment = new MyProfileFragment();
             settingsFragment = new SettingsFragment();
+            addDialogFragment = new AddDialogFragment();
 
 
             getSupportFragmentManager().beginTransaction()
@@ -226,7 +228,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add) {
+            addDialogFragment.show(getSupportFragmentManager(), "Add a Picture");
             return true;
         }
 
