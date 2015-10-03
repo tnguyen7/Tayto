@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
 
-    android:background="#4f4f4f"
+    android:background="#ac333131"
     android:id="@+id/signin">
 
     <LinearLayout
@@ -50,6 +50,17 @@
 
             />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Incorrect username or password. Try again."
+        android:id="@+id/incorrect_login_mess"
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffb43119"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

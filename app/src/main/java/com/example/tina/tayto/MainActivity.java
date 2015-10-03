@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     SettingsFragment settingsFragment;
     Fragment currentFragment;
 
-    EditText username, password;
+    TextView username, password, incorrectLogin;
 
     int loginSuccess;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        incorrectLogin = (TextView) findViewById(R.id.incorrect_login_mess);
 
         Button button = (Button) findViewById(R.id.btnSignIn);
         button.setOnClickListener(new View.OnClickListener() {
@@ -288,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 Log.d(TAG, "successful login");
             } else {
                 Log.d(TAG, "unsuccessful login!");
+                incorrectLogin.setVisibility(View.VISIBLE);
             }
         }
     }
