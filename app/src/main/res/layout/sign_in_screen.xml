@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
 
-    android:background="#ac333131"
+    android:background="#EFEBE9"
     android:id="@+id/signin">
 
     <LinearLayout
@@ -18,7 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:padding="10dp"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:background="#D7CCC8">
+
 
         <EditText
             android:id="@+id/username"
@@ -27,7 +29,7 @@
 
             android:padding="10dp"
             android:hint="Username"
-            android:textColorHint="#cccccc"
+            android:textColorHint="#A1887F"
             android:drawableLeft="@drawable/ic_user_fish"/>
         <EditText
             android:id="@+id/password"
@@ -37,9 +39,10 @@
             android:layout_marginTop="-2dp"
             android:padding="10dp"
             android:hint="Password"
-            android:textColorHint="#cccccc"
+            android:textColorHint="#A1887F"
             android:password="true"
-            android:drawableLeft="@drawable/ic_password_lock"/>
+            android:drawableLeft="@drawable/ic_password_lock"
+            />
         <Button
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
@@ -47,7 +50,8 @@
             android:padding="10dp"
             android:layout_margin="4dp"
             android:text="Sign In"
-
+            android:textColor="#FAFAFA"
+            android:background="#FF9E80"
             />
     </LinearLayout>
 
