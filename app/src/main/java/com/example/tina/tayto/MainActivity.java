@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     String title;
     private static final String HOME = "Home";
     private static final String MY_SUBS = "My Subscriptions";
-    private static final String MY_PROFILE = "MyProfile";
+    private static final String MY_PROFILE = "My Profile";
     private static final String SETTINGS = "Settings";
 
     HomeFragment homeFragment;
@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         } else {
 
             homeFragment = (HomeFragment) currentFragment;
-            myProfileFragment = (MyProfileFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.my_profile));
             mySubFragment = (MySubscriptionsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.my_subs));
+            myProfileFragment = (MyProfileFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.my_profile));
             settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.settings));
 
             getSupportFragmentManager().beginTransaction()
@@ -152,20 +152,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                     case (MY_SUBS): {
 
                         switchTo(mySubFragment, title);
-                        /* refresh listener
-                        mySubFragment.mySwipeRefreshLayout.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.v(TAG, "refreshing");
-                                mySubFragment.refreshListener.onRefresh();
-                            }
-                        });*/
                         break;
 
                     }
                     case (MY_PROFILE): {
 
                         switchTo(myProfileFragment, title);
+                        Log.v("main", currentFragment.toString());
                         break;
 
                     }

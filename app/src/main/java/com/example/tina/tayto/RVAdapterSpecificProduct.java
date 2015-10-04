@@ -1,6 +1,7 @@
 package com.example.tina.tayto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,15 +25,24 @@ public class RVAdapterSpecificProduct extends RecyclerView.Adapter<RVAdapterSpec
     public class SpecProdViewHolder extends RecyclerView.ViewHolder{
 
         CardView cv;
-        TextView product, person;
-        ImageView productPicture, profilePicture;
+        TextView product, person, description;
+        ImageView productPicture;
 
-        SpecProdViewHolder(View itemView) {
+        SpecProdViewHolder(final View itemView) {
             super(itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), Timeline.class));
+                }
+            });
+
             cv = (CardView)itemView.findViewById(R.id.specific_product_cv);
             product = (TextView)itemView.findViewById(R.id.product_name);
             person = (TextView) itemView.findViewById(R.id.username);
             productPicture = (ImageView)itemView.findViewById(R.id.imageView);
+            description = (TextView) itemView.findViewById(R.id.description);
             //profilePicture = (ImageView)itemView.findViewById(R.id.imageView3);
         }
     }
@@ -57,12 +67,12 @@ public class RVAdapterSpecificProduct extends RecyclerView.Adapter<RVAdapterSpec
     public void onBindViewHolder(RVAdapterSpecificProduct.SpecProdViewHolder genProdViewHolder, int i) {
         genProdViewHolder.product.setText(specificProducts.get(i).product);
         genProdViewHolder.person.setText(specificProducts.get(i).person);
+        genProdViewHolder.description.setText(specificProducts.get(i).description);
 
         Picasso.with(context)
                 .load(specificProducts.get(i).productPicture)
                 .into(genProdViewHolder.productPicture);
         //insert picasso code here
-        //genProdViewHolder.productPicture.setImageBitmap(specificProducts.get(i).productPicture);
         //genProdViewHolder.profilePicture.setImageBitmap(specificProducts.get(i).productPicture);
 
     }

@@ -2,6 +2,7 @@ package com.example.tina.tayto;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -63,7 +64,8 @@ public class AddDialogFragment extends DialogFragment {
                         switch (which) {
                             case 0:
                                 //((MainActivity)getActivity()).useCamera();
-                                Log.v("addDialog", "hi");
+                                Intent intent = new Intent (getActivity(), AddProduct.class);
+                                startActivity(intent);
                                 return;
 
                         }

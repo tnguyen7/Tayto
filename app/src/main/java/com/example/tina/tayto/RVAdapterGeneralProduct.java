@@ -1,5 +1,7 @@
 package com.example.tina.tayto;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -17,22 +21,35 @@ public class RVAdapterGeneralProduct extends RecyclerView.Adapter<RVAdapterGener
 
     List<GeneralProduct> generalProducts;
     String productName;
+    Context context;
 
     public static class GenProdViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView product;
         ImageView productPicture;
 
-        GenProdViewHolder(View itemView) {
+        GenProdViewHolder(final View itemView) {
             super(itemView);
+
             cv = (CardView)itemView.findViewById(R.id.general_product_cv);
             product = (TextView)itemView.findViewById(R.id.product_name);
-            productPicture = (ImageView)itemView.findViewById(R.id.person_photo);
+            productPicture = (ImageView)itemView.findViewById(R.id.imageView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), Timeline.class);
+                    intent.putExtra("Name", product.getText());
+                    itemView.getContext().startActivity(intent);
+
+                }
+            });
         }
     }
 
-    public RVAdapterGeneralProduct(List<GeneralProduct> generalProducts){
+    public RVAdapterGeneralProduct(List<GeneralProduct> generalProducts, Context context){
         this.generalProducts = generalProducts;
+        this.context = context;
     }
 
     @Override
@@ -50,7 +67,9 @@ public class RVAdapterGeneralProduct extends RecyclerView.Adapter<RVAdapterGener
     public void onBindViewHolder(RVAdapterGeneralProduct.GenProdViewHolder genProdViewHolder, int i) {
         genProdViewHolder.product.setText(generalProducts.get(i).product);
 
-        genProdViewHolder.productPicture.setImageBitmap(generalProducts.get(i).productPicture);
+        Picasso.with(context)
+                .load(generalProducts.get(i).productPicture)
+                .into(genProdViewHolder.productPicture);
     }
 
     @Override

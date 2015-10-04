@@ -53,6 +53,13 @@
                 android:layout_below="@+id/imageView"
             />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="insert mini description"
+                android:id="@+id/description"
+                android:layout_below="@+id/textView2" />
+
 
         </RelativeLayout>
 

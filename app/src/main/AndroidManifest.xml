@@ -15,13 +15,21 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
 
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".AddProduct"
+            android:label="@string/title_activity_add_product" >
+        </activity>
+        <activity
+            android:name=".Timeline"
+            android:label="@string/title_activity_timeline" >
         </activity>
     </application>
 
