@@ -2,8 +2,25 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+            <item name="colorPrimary">@color/primary</item> 
+            <item name="colorPrimaryDark">@color/primary_dark</item> 
+            <item name="colorControlHighlight">@color/accent_translucent</item> 
+            <item name="colorAccent">@color/accent</item>
+
+            <item name="windowActionBar">true</item>
+
+        </style>
+
+
+        <color name="primary">#FFCCBC</color>
+        <color name="primary_dark">#FF8A80</color>
+        <color name="accent">#C8E6C9</color>
+        <color name="accent_translucent">#E0E0E0</color>
+        <color name="accent_bright">#FFF3E0</color>
+
+        <color name="white">#FFF</color>color
         <!-- Customize your theme here. -->
-    </style>
+
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabMaxWidth">@dimen/tab_max_width</item>
         <item name="tabIndicatorColor">?attr/colorAccent</item>
@@ -16,6 +33,7 @@
     </style>
     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">14sp</item>
+
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="textAllCaps">true</item>
     </style>
