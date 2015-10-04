@@ -72,6 +72,7 @@ public class RVAdapterGeneralProduct extends RecyclerView.Adapter<RVAdapterGener
 
         Picasso.with(context)
                 .load(generalProducts.get(i).productPicture)
+                .fit().centerCrop()
                 .into(genProdViewHolder.productPicture);
     }
 

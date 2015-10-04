@@ -75,6 +75,7 @@ public class RVAdapterSpecificProduct extends RecyclerView.Adapter<RVAdapterSpec
 
         Picasso.with(context)
                 .load(specificProducts.get(i).productPicture)
+                .fit().centerCrop()
                 .into(genProdViewHolder.productPicture);
         //insert picasso code here
         //genProdViewHolder.profilePicture.setImageBitmap(specificProducts.get(i).productPicture);
