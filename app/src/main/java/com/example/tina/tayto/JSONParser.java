@@ -22,21 +22,20 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+@SuppressWarnings( "deprecation" )
 public class JSONParser {
 
     // Response from the HTTP Request
     static InputStream httpResponseStream = null;
     // JSON Response String to create JSON Object
     static String jsonString = "";
+    static DefaultHttpClient httpClient = new DefaultHttpClient();
 
-    @SuppressWarnings( "deprecation" )
     // Method to issue HTTP request, parse JSON result and return JSON Object
     public JSONObject makeHttpRequest(String url, String method,
                                       List<NameValuePair> params) {
 
         try {
-            // get a Http client
-            DefaultHttpClient httpClient = new DefaultHttpClient();
 
             // If required HTTP method is POST
             if (method == "POST") {
