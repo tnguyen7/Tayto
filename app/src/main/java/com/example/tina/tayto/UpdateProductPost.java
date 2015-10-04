@@ -10,15 +10,15 @@ import java.net.URI;
  */
 public class UpdateProductPost {
     String personName, productName, description, date;
-    Bitmap productPicture;
+    String productPicture, profilePicture;
     URI productVideo;
 
-    public UpdateProductPost(String personName, String productName, String description, String date, Bitmap personPicture, URI productVideo) {
+    public UpdateProductPost(String personName, String productName, String description, String date, String productPicture, String profilePicture) {
         this.personName = personName;
         this.productName = productName;
         this.description = description;
         this.date = date;
-        this.productPicture = personPicture;
-        this.productVideo = productVideo;
+        this.productPicture = productPicture;
+        this.profilePicture = profilePicture;
     }
 }

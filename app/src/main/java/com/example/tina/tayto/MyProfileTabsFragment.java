@@ -28,6 +28,7 @@ import java.util.List;
  */
 public class MyProfileTabsFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
+    GlobalState gs;
 
     private int mPage;
     List<GeneralProduct> generalProductList;
@@ -47,6 +48,7 @@ public class MyProfileTabsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
+        gs = (GlobalState) getActivity().getApplication();
 
         generalProductList = new ArrayList<GeneralProduct>();
         specificProductList = new ArrayList<SpecificProduct>();
@@ -99,6 +101,8 @@ public class MyProfileTabsFragment extends Fragment {
             Log.v("HomeTabsFragment", obj.toString());
             try {
                 if (mPage == 1) {
+
+                    username = gs.getUsername();
                     jsonArray = obj.getJSONArray("products");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -111,7 +115,7 @@ public class MyProfileTabsFragment extends Fragment {
                         String productName = c.getString("name");
                         String prodLoc = "http://awtter.website/tayto_media/" + c.getString("picture") + ".jpg";
 
-                        generalProductList.add(new GeneralProduct(productName, prodLoc));
+                        generalProductList.add(new GeneralProduct(productName, prodLoc, username));
                     }
 
                     Log.v("HomeTabsFragment", String.valueOf(generalProductList.size()));

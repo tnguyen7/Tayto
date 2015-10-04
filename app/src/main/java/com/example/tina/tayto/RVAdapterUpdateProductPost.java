@@ -1,5 +1,6 @@
 package com.example.tina.tayto;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -17,6 +20,7 @@ import java.util.List;
 public class RVAdapterUpdateProductPost extends RecyclerView.Adapter<RVAdapterUpdateProductPost.UpdProdPosViewHolder> {
 
     List<UpdateProductPost> updProdPos;
+    Context context;
 
     public static class UpdProdPosViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -37,13 +41,14 @@ public class RVAdapterUpdateProductPost extends RecyclerView.Adapter<RVAdapterUp
         }
     }
 
-    public RVAdapterUpdateProductPost(List<UpdateProductPost> list) {
+    public RVAdapterUpdateProductPost(List<UpdateProductPost> list, Context context) {
         this.updProdPos = list;
+        this.context = context;
     }
 
     @Override
     public RVAdapterUpdateProductPost.UpdProdPosViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardview, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.update_product_card, viewGroup, false);
         UpdProdPosViewHolder uppvh = new UpdProdPosViewHolder(v);
         return uppvh;
     }
@@ -55,7 +60,9 @@ public class RVAdapterUpdateProductPost extends RecyclerView.Adapter<RVAdapterUp
         updProdPosViewHolder.description.setText(updProdPos.get(i).description);
         updProdPosViewHolder.date.setText(updProdPos.get(i).date);
 
-        updProdPosViewHolder.productImage.setImageBitmap(updProdPos.get(i).productPicture);
+        Picasso.with(context)
+                .load(updProdPos.get(i).productPicture)
+                .into(updProdPosViewHolder.productImage);
     }
 
     @Override

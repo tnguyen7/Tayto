@@ -3,6 +3,7 @@ package com.example.tina.tayto;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,7 @@ import java.util.List;
 public class MyProducts extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
 
+    GlobalState gs;
     private int mPage;
     List<GeneralProduct> generalProductList;
     List<SpecificProduct> specificProductList;
@@ -42,6 +44,7 @@ public class MyProducts extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
+        gs = (GlobalState) getActivity().getApplication();
 
         generalProductList = new ArrayList<GeneralProduct>();
         specificProductList = new ArrayList<SpecificProduct>();
@@ -105,6 +108,7 @@ public class MyProducts extends Fragment {
 
                 if (mPage == 1) {
 
+                    username = gs.getUsername();
                     jsonArray = obj.getJSONArray("products");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -113,7 +117,7 @@ public class MyProducts extends Fragment {
                         String productName = c.getString("name");
                         String prodLoc = "http://awtter.website/tayto_media/" + c.getString("picture") + ".jpg";
 
-                        generalProductList.add(new GeneralProduct(productName, prodLoc));
+                        generalProductList.add(new GeneralProduct(productName, prodLoc,username));
                     }
 
                     Log.v("Myprodz", String.valueOf(generalProductList.size()));

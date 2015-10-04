@@ -22,6 +22,7 @@ public class RVAdapterGeneralProduct extends RecyclerView.Adapter<RVAdapterGener
     List<GeneralProduct> generalProducts;
     String productName;
     Context context;
+    static String username;
 
     public static class GenProdViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -39,7 +40,8 @@ public class RVAdapterGeneralProduct extends RecyclerView.Adapter<RVAdapterGener
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(itemView.getContext(), Timeline.class);
-                    intent.putExtra("Name", product.getText());
+                    intent.putExtra("name", username);
+                    intent.putExtra("product", product.getText());
                     itemView.getContext().startActivity(intent);
 
                 }
@@ -65,6 +67,7 @@ public class RVAdapterGeneralProduct extends RecyclerView.Adapter<RVAdapterGener
     }
     @Override
     public void onBindViewHolder(RVAdapterGeneralProduct.GenProdViewHolder genProdViewHolder, int i) {
+        username = generalProducts.get(i).username;
         genProdViewHolder.product.setText(generalProducts.get(i).product);
 
         Picasso.with(context)

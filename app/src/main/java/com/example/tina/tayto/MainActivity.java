@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         SettingsFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "MainActivity";
+    GlobalState gs;
     DrawerLayout drawerLayout;
     View content;
     String title;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.sign_in_screen);
+        gs = (GlobalState) getApplication();
 
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
@@ -297,10 +299,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
             try {
                 loginSuccess = json.getInt("success");
-                loginSuccess = 1;
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 loginSuccess = 0;
+                System.out.println("snomofo");
             }
 
             return null;
@@ -312,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 setUpFragments();
                 createNavigationDrawer();
                 Log.d(TAG, "successful login");
+                gs.setVariables(username);
             } else {
                 Log.d(TAG, "unsuccessful login!");
                 incorrectLogin.setVisibility(View.VISIBLE);

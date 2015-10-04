@@ -31,19 +31,23 @@ public class RVAdapterSpecificProduct extends RecyclerView.Adapter<RVAdapterSpec
         SpecProdViewHolder(final View itemView) {
             super(itemView);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    itemView.getContext().startActivity(new Intent(itemView.getContext(), Timeline.class));
-                }
-            });
-
             cv = (CardView)itemView.findViewById(R.id.specific_product_cv);
             product = (TextView)itemView.findViewById(R.id.product_name);
             person = (TextView) itemView.findViewById(R.id.username);
             productPicture = (ImageView)itemView.findViewById(R.id.imageView);
             description = (TextView) itemView.findViewById(R.id.description);
             //profilePicture = (ImageView)itemView.findViewById(R.id.imageView3);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), Timeline.class);
+                    intent.putExtra("name", person.getText());
+                    intent.putExtra("product", product.getText());
+                    itemView.getContext().startActivity(intent);
+
+                }
+            });
         }
     }
 

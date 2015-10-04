@@ -8,8 +8,9 @@ import android.graphics.Bitmap;
 public class GeneralProduct {
     String product;
     String productPicture;
+    String username;
 
-    public GeneralProduct(String product, String picture) {
+    public GeneralProduct(String product, String picture, String username) {
         this.product = product;
         this.productPicture = picture;
     }
