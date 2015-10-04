@@ -35,9 +35,10 @@ public class Timeline extends AppCompatActivity {
         Intent intent = getIntent();
         username = "temp";
         product = intent.getStringExtra("product");
+        Log.e("timeline", "Product: " + product);
         updatePostList = new ArrayList<UpdateProductPost>();
 
-        new GetProducts(this.findViewById(android.R.id.content).getRootView()).execute();
+        //new GetProducts(this.findViewById(android.R.id.content).getRootView()).execute();
 
         rv = (RecyclerView) this.findViewById(android.R.id.content).getRootView().findViewById(R.id.rv);
         final GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
@@ -55,7 +56,7 @@ public class Timeline extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
-
+/*
     class GetProducts extends AsyncTask<String, String, String> {
 
         private static final String url = "http://awtter.website/tayto_api/getUserProfile.php";
@@ -121,5 +122,5 @@ public class Timeline extends AppCompatActivity {
             rv.setAdapter(adapter);
         }
 
-    }
+    }*/
 }
