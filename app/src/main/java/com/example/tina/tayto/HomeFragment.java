@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager_home);
-        viewPager.setAdapter(new SampleFragmentPagerAdapter(getFragmentManager(),
+        viewPager.setAdapter(new HomeTabsAdapter(getFragmentManager(),
                 getActivity()));
 
         // Give the TabLayout the ViewPager

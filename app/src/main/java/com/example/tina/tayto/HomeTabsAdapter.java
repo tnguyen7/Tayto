@@ -5,12 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+public class HomeTabsAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 2;
     private String tabTitles[] = new String[] { "Popular", "Recent"};
     private Context context;
 
-    public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
+    public HomeTabsAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
     }
@@ -22,7 +22,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return MyProducts.newInstance(position + 1);
+        return HomeTabsFragment.newInstance(position + 1);
     }
 
     @Override

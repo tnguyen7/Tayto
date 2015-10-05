@@ -3,7 +3,6 @@ package com.example.tina.tayto;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -23,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // In this case, the fragment displays simple text based on the page
-public class MyProducts extends Fragment {
+public class HomeTabsFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
 
     GlobalState gs;
@@ -32,10 +30,10 @@ public class MyProducts extends Fragment {
     List<SpecificProduct> specificProductList;
     RecyclerView rv;
 
-    public static MyProducts newInstance(int page) {
+    public static HomeTabsFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
-        MyProducts fragment = new MyProducts();
+        HomeTabsFragment fragment = new HomeTabsFragment();
         fragment.setArguments(args);
         return fragment;
     }
